@@ -1,0 +1,9 @@
+<div *ngIf="flightInfo$ | async as flightInfo" fxFlexAlign="center" class="p-3">
+  Plane Number: {{ flightInfo.num }}
+  <hr>
+  Duration: {{ flightInfo.duration | duration }}
+  <hr>
+  Origin Gate: {{ flightInfo.from_gate }}
+  <hr>
+  Destination Gate: {{ flightInfo.to_gate }}
+</div>

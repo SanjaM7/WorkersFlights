@@ -1,0 +1,25 @@
+<div fxLayout="row">
+  <div *ngIf="workerFlights" fxFlex="80%">
+    <table *ngIf="workerFlights.length" mat-table [dataSource]="workerFlights" class="table">
+      <ng-container *ngFor="let column of columns let i = index">
+        <ng-container [matColumnDef]="column">
+          <th mat-header-cell *matHeaderCellDef>{{ columnsFriendlyNames[i] }}</th>
+          <td mat-cell *matCellDef="let row"> {{ row[column] }} </td>
+        </ng-container>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns" (click)="onFlightSelected(row.num)" [routerLink]="[row.num]"
+        routerLinkActive="active">
+      </tr>
+    </table>
+
+    <div *ngIf='workerFlights.length === 0'>
+      <div class="alert alert-secondary">No workers found.</div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <router-outlet></router-outlet>
+  </div>
+</div>

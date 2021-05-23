@@ -1,0 +1,17 @@
+<div fxLayout="row">
+  <div fxFlex="3s00px">
+    <div class="workers">Workers</div>
+    <div *ngIf='workers$ | async; let workers'>
+      <div *ngFor='let worker of workers'>
+        <div [routerLink]="['/', worker.id]" routerLinkActive="active" class="worker">{{ worker.name }}</div>
+      </div>
+      <div *ngIf='workers.length === 0'>
+        <div class="alert alert-secondary">No workers found.</div>
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <router-outlet></router-outlet>
+  </div>
+</div>
